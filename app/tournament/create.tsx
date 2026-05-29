@@ -19,9 +19,28 @@ export default function CreateTournamentScreen() {
   const [name, setName] = useState('');
   const [teams, setTeams] = useState('');
 
+  const [teamsError, setTeamsError] = useState('');
+  const [nameError, setNameError] = useState('');
+
   const handleCreateTournament = () => {
 
-    if (!name || !teams) return;
+    setTeamsError('');
+    setNameError('');
+
+    if (!name.trim()) {
+      setNameError('El nombre del torneo es obligatorio');
+      return;
+    }
+
+    if (!teams.trim()) {
+      setTeamsError('La cantidad de equipos es obligatoria');
+      return;
+    }
+
+    if (Number(teams) > 35) {
+      setTeamsError('Máximo 35 equipos');
+      return;
+    }
 
     addTournament({
       id: tournaments.length + 1,
@@ -42,6 +61,30 @@ export default function CreateTournamentScreen() {
         justifyContent: 'center',
       }}
     >
+
+      <TouchableOpacity
+       onPress={() => router.push('/tournaments')}
+       style={{
+       position: 'absolute',
+       top: 60,
+       right: 24,
+       zIndex: 10,
+       backgroundColor: '#1E293B',
+       paddingHorizontal: 16,
+       paddingVertical: 10,
+       borderRadius: 14,
+  }}
+      >
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: '600',
+          }}
+        >
+          ← Volver
+        </Text>
+      </TouchableOpacity>
+
       <Text
         style={{
           color: 'white',
@@ -79,7 +122,13 @@ export default function CreateTournamentScreen() {
 
         <TextInput
           value={name}
-          onChangeText={setName}
+          onChangeText={(text) => {
+            setName(text);
+
+            if (text.trim()) {
+              setNameError('');
+            }
+          }}
           placeholder="Ej: Summer Cup"
           placeholderTextColor="#64748B"
           style={{
@@ -91,6 +140,19 @@ export default function CreateTournamentScreen() {
             fontSize: 16,
           }}
         />
+
+        {nameError ? (
+          <Text
+            style={{
+              color: '#EF4444',
+              marginTop: 8,
+              fontSize: 14,
+            }}
+          >
+            {nameError}
+          </Text>
+        ) : null}
+
       </View>
 
       <View
@@ -109,9 +171,18 @@ export default function CreateTournamentScreen() {
 
         <TextInput
           value={teams}
-          onChangeText={setTeams}
+          onChangeText={(text) => {
+
+            if (/[^0-9]/.test(text)) {
+              setTeamsError('Solo se permiten números');
+            } else {
+              setTeamsError('');
+            }
+
+            setTeams(text);
+          }}
           keyboardType="numeric"
-          placeholder="Ej: 16"
+          placeholder="Máximo 35 equipos"
           placeholderTextColor="#64748B"
           style={{
             backgroundColor: '#1E293B',
@@ -122,6 +193,19 @@ export default function CreateTournamentScreen() {
             fontSize: 16,
           }}
         />
+
+        {teamsError ? (
+          <Text
+            style={{
+              color: '#EF4444',
+              marginTop: 8,
+              fontSize: 14,
+            }}
+          >
+            {teamsError}
+          </Text>
+        ) : null}
+
       </View>
 
       <TouchableOpacity
@@ -144,6 +228,7 @@ export default function CreateTournamentScreen() {
           Guardar Torneo
         </Text>
       </TouchableOpacity>
+
     </View>
   );
 }

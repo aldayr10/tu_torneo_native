@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { router } from 'expo-router';
+
 export default function DashboardScreen() {
   return (
     <ScrollView
@@ -25,7 +27,7 @@ export default function DashboardScreen() {
           marginBottom: 8,
         }}
       >
-        Dashboard
+        Tu torneo
       </Text>
 
       <Text
@@ -79,12 +81,15 @@ export default function DashboardScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={{
-          backgroundColor: '#7C3AED',
-          padding: 18,
-          borderRadius: 18,
-          marginBottom: 15,
-        }}
+        onPress={() =>
+        router.push('/tournaments')
+      }
+      style={{
+       backgroundColor: '#7C3AED',
+     padding: 18,
+     borderRadius: 18,
+     marginBottom: 15,
+  }}
       >
         <Text
           style={{

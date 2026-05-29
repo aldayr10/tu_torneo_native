@@ -72,7 +72,7 @@ export default function TournamentsScreen() {
           key={tournament.id}
           activeOpacity={0.8}
           onPress={() =>
-            router.push(`./tournament/${tournament.id}`)
+            router.push(`/tournament/${tournament.id}`)
           }
           style={{
             backgroundColor: '#1E293B',
