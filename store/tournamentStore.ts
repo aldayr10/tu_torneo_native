@@ -11,6 +11,7 @@ interface TournamentStore {
   tournaments: Tournament[];
 
   addTournament: (tournament: Tournament) => void;
+
 }
 
 export const useTournamentStore = create<TournamentStore>((set) => ({

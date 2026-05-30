@@ -1,8 +1,8 @@
 import {
-  View,
-  Text,
   ScrollView,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { router } from 'expo-router';
@@ -48,6 +48,7 @@ export default function TournamentsScreen() {
           onPress={() =>
             router.push('/tournament/create')
           }
+          
           style={{
             backgroundColor: '#7C3AED',
             paddingHorizontal: 18,
@@ -71,7 +72,7 @@ export default function TournamentsScreen() {
           key={tournament.id}
           activeOpacity={0.8}
           onPress={() =>
-            router.push(`./tournament/${tournament.id}`)
+            router.push(`/tournament/${tournament.id}`)
           }
           style={{
             backgroundColor: '#1E293B',
