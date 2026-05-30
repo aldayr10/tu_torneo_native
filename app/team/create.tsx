@@ -6,26 +6,27 @@ import {
 } from 'react-native';
 
 import { useState } from 'react';
-
 import { router } from 'expo-router';
 
 import { useTeamStore } from '../../store/teamStore';
 
 export default function CreateTeamScreen() {
-
   const { addTeam, teams } = useTeamStore();
 
   const [name, setName] = useState('');
   const [players, setPlayers] = useState('');
 
   const handleCreateTeam = () => {
-
-    if (!name || !players) return;
+    if (!name.trim() || !players.trim()) {
+      return;
+    }
 
     addTeam({
-      id: teams.length + 1,
+      id: Date.now(),
       name,
       players: Number(players),
+      victories: 0,
+      tournaments: 0,
     });
 
     router.back();
@@ -61,11 +62,7 @@ export default function CreateTeamScreen() {
         Agrega un nuevo equipo
       </Text>
 
-      <View
-        style={{
-          marginBottom: 20,
-        }}
-      >
+      <View style={{ marginBottom: 20 }}>
         <Text
           style={{
             color: 'white',
@@ -91,11 +88,7 @@ export default function CreateTeamScreen() {
         />
       </View>
 
-      <View
-        style={{
-          marginBottom: 30,
-        }}
-      >
+      <View style={{ marginBottom: 30 }}>
         <Text
           style={{
             color: 'white',
