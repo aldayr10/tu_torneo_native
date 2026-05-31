@@ -103,12 +103,13 @@ export default function DashboardScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={{
-          backgroundColor: '#059669',
-          padding: 18,
-          borderRadius: 18,
-          marginBottom: 30,
-        }}
+      onPress={() => router.push('/matches')}
+       style={{
+       backgroundColor: '#059669',
+       padding: 18,
+       borderRadius: 18,
+      marginBottom: 30,
+  }}
       >
         <Text
           style={{

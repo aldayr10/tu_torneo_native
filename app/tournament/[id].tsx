@@ -4,17 +4,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import { useLocalSearchParams } from 'expo-router';
-
-const teams = [
-  'Los Guerreros',
-  'Titanes FC',
-  'Storm United',
-  'Phoenix Club',
-];
-
 export default function TournamentDetailsScreen() {
-  const { id } = useLocalSearchParams();
 
   return (
     <ScrollView
@@ -23,6 +13,7 @@ export default function TournamentDetailsScreen() {
         backgroundColor: '#0F172A',
       }}
     >
+
       <View
         style={{
           backgroundColor: '#7C3AED',
@@ -50,7 +41,7 @@ export default function TournamentDetailsScreen() {
             fontSize: 16,
           }}
         >
-          ID Torneo: {id}
+          Torneo principal
         </Text>
       </View>
 
@@ -59,6 +50,7 @@ export default function TournamentDetailsScreen() {
           padding: 20,
         }}
       >
+
         <Text
           style={{
             color: 'white',
@@ -70,27 +62,56 @@ export default function TournamentDetailsScreen() {
           Equipos participantes
         </Text>
 
-        {teams.map((team, index) => (
-          <View
-            key={index}
-            style={{
-              backgroundColor: '#1E293B',
-              padding: 18,
-              borderRadius: 18,
-              marginBottom: 14,
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 16,
-                fontWeight: '600',
-              }}
-            >
-              {team}
-            </Text>
-          </View>
-        ))}
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 14,
+          }}
+        >
+          <Text style={{ color: 'white' }}>
+            Los Guerreros
+          </Text>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 14,
+          }}
+        >
+          <Text style={{ color: 'white' }}>
+            Titanes FC
+          </Text>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 14,
+          }}
+        >
+          <Text style={{ color: 'white' }}>
+            Storm United
+          </Text>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+          }}
+        >
+          <Text style={{ color: 'white' }}>
+            Phoenix Club
+          </Text>
+        </View>
 
         <Text
           style={{
@@ -104,46 +125,68 @@ export default function TournamentDetailsScreen() {
           Tabla de posiciones
         </Text>
 
-        {[1, 2, 3, 4].map((position) => (
-          <View
-            key={position}
-            style={{
-              backgroundColor: '#1E293B',
-              padding: 18,
-              borderRadius: 18,
-              marginBottom: 12,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: '600',
-              }}
-            >
-              #{position}
-            </Text>
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={{ color: 'white' }}>#1</Text>
+          <Text style={{ color: 'white' }}>Equipo 1</Text>
+          <Text style={{ color: '#22C55E' }}>11 pts</Text>
+        </View>
 
-            <Text
-              style={{
-                color: 'white',
-              }}
-            >
-              Equipo {position}
-            </Text>
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={{ color: 'white' }}>#2</Text>
+          <Text style={{ color: 'white' }}>Equipo 2</Text>
+          <Text style={{ color: '#22C55E' }}>10 pts</Text>
+        </View>
 
-            <Text
-              style={{
-                color: '#22C55E',
-                fontWeight: '700',
-              }}
-            >
-              {12 - position} pts
-            </Text>
-          </View>
-        ))}
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={{ color: 'white' }}>#3</Text>
+          <Text style={{ color: 'white' }}>Equipo 3</Text>
+          <Text style={{ color: '#22C55E' }}>9 pts</Text>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+            marginBottom: 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={{ color: 'white' }}>#4</Text>
+          <Text style={{ color: 'white' }}>Equipo 4</Text>
+          <Text style={{ color: '#22C55E' }}>8 pts</Text>
+        </View>
+
       </View>
+
     </ScrollView>
   );
 }
