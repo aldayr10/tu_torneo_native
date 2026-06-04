@@ -2,22 +2,9 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 
-import { useLocalSearchParams } from 'expo-router';
-
-const players = [
-  'Carlos Ramírez',
-  'Juan Pérez',
-  'Miguel Torres',
-  'Andrés López',
-  'Kevin Castro',
-];
-
-export default function TeamDetailsScreen() {
-  const { id } = useLocalSearchParams();
-
+export default function TournamentDetailsScreen() {
   return (
     <ScrollView
       style={{
@@ -31,7 +18,7 @@ export default function TeamDetailsScreen() {
       <View
         style={{
           height: 220,
-          backgroundColor: '#2563EB',
+          backgroundColor: '#7C3AED',
           justifyContent: 'flex-end',
           padding: 24,
           borderBottomLeftRadius: 30,
@@ -46,16 +33,16 @@ export default function TeamDetailsScreen() {
             marginBottom: 10,
           }}
         >
-          Los Guerreros
+          Detalle del Torneo
         </Text>
 
         <Text
           style={{
-            color: '#DBEAFE',
+            color: '#E9D5FF',
             fontSize: 16,
           }}
         >
-          ID Equipo: {id}
+          Información general del torneo
         </Text>
       </View>
 
@@ -86,7 +73,7 @@ export default function TeamDetailsScreen() {
                 marginBottom: 8,
               }}
             >
-              Jugadores
+              Equipos
             </Text>
 
             <Text
@@ -96,7 +83,7 @@ export default function TeamDetailsScreen() {
                 fontWeight: '700',
               }}
             >
-              12
+              0
             </Text>
           </View>
 
@@ -115,7 +102,7 @@ export default function TeamDetailsScreen() {
                 marginBottom: 8,
               }}
             >
-              Victorias
+              Partidos
             </Text>
 
             <Text
@@ -125,7 +112,7 @@ export default function TeamDetailsScreen() {
                 fontWeight: '700',
               }}
             >
-              8
+              0
             </Text>
           </View>
 
@@ -144,17 +131,17 @@ export default function TeamDetailsScreen() {
                 marginBottom: 8,
               }}
             >
-              Torneos
+              Estado
             </Text>
 
             <Text
               style={{
                 color: 'white',
-                fontSize: 24,
+                fontSize: 16,
                 fontWeight: '700',
               }}
             >
-              3
+              Nuevo
             </Text>
           </View>
         </View>
@@ -167,50 +154,54 @@ export default function TeamDetailsScreen() {
             marginBottom: 20,
           }}
         >
-          Jugadores
+          Equipos participantes
         </Text>
 
-        {players.map((player, index) => (
-          <View
-            key={index}
-            style={{
-              backgroundColor: '#1E293B',
-              padding: 18,
-              borderRadius: 18,
-              marginBottom: 14,
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 16,
-                fontWeight: '600',
-              }}
-            >
-              {player}
-            </Text>
-          </View>
-        ))}
-
-        <TouchableOpacity
+        <View
           style={{
-            backgroundColor: '#2563EB',
+            backgroundColor: '#1E293B',
             padding: 18,
             borderRadius: 18,
-            marginTop: 20,
-            alignItems: 'center',
+            marginBottom: 30,
           }}
         >
           <Text
             style={{
-              color: 'white',
-              fontSize: 16,
-              fontWeight: '700',
+              color: '#94A3B8',
+              textAlign: 'center',
             }}
           >
-            Invitar Jugador
+            No hay equipos registrados
           </Text>
-        </TouchableOpacity>
+        </View>
+
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 24,
+            fontWeight: '700',
+            marginBottom: 20,
+          }}
+        >
+          Tabla de posiciones
+        </Text>
+
+        <View
+          style={{
+            backgroundColor: '#1E293B',
+            padding: 18,
+            borderRadius: 18,
+          }}
+        >
+          <Text
+            style={{
+              color: '#94A3B8',
+              textAlign: 'center',
+            }}
+          >
+            No hay posiciones disponibles
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );

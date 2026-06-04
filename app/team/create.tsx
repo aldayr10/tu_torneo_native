@@ -3,6 +3,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import { useState } from 'react';
@@ -12,21 +13,73 @@ import { router } from 'expo-router';
 import { useTeamStore } from '../../store/teamStore';
 
 export default function CreateTeamScreen() {
-
   const { addTeam, teams } = useTeamStore();
 
   const [name, setName] = useState('');
   const [players, setPlayers] = useState('');
 
-  const handleCreateTeam = () => {
+  const handlePlayersChange = (text: string) => {
+    const onlyNumbers = text.replace(/[^0-9]/g, '');
 
-    if (!name || !players) return;
+    if (
+      onlyNumbers !== '' &&
+      Number(onlyNumbers) > 35
+    ) {
+      Alert.alert(
+        'Límite excedido',
+        'Un equipo puede tener máximo 35 jugadores.'
+      );
+      return;
+    }
+
+    setPlayers(onlyNumbers);
+  };
+
+  const handleCreateTeam = () => {
+    if (!name.trim()) {
+      Alert.alert(
+        'Campo requerido',
+        'Debes ingresar el nombre del equipo.'
+      );
+      return;
+    }
+
+    if (!players) {
+      Alert.alert(
+        'Campo requerido',
+        'Debes ingresar la cantidad de jugadores.'
+      );
+      return;
+    }
+
+    const totalPlayers = Number(players);
+
+    if (totalPlayers < 1) {
+      Alert.alert(
+        'Cantidad inválida',
+        'Debe existir al menos 1 jugador.'
+      );
+      return;
+    }
+
+    if (totalPlayers > 35) {
+      Alert.alert(
+        'Cantidad inválida',
+        'Máximo 35 jugadores por equipo.'
+      );
+      return;
+    }
 
     addTeam({
       id: teams.length + 1,
       name,
-      players: Number(players),
+      players: totalPlayers,
     });
+
+    Alert.alert(
+      'Éxito',
+      'Equipo creado correctamente.'
+    );
 
     router.back();
   };
@@ -107,7 +160,7 @@ export default function CreateTeamScreen() {
 
         <TextInput
           value={players}
-          onChangeText={setPlayers}
+          onChangeText={handlePlayersChange}
           keyboardType="numeric"
           placeholder="Ej: 12"
           placeholderTextColor="#64748B"
@@ -120,6 +173,16 @@ export default function CreateTeamScreen() {
             fontSize: 16,
           }}
         />
+
+        <Text
+          style={{
+            color: '#94A3B8',
+            marginTop: 8,
+            fontSize: 12,
+          }}
+        >
+          Solo números. Máximo 35 jugadores.
+        </Text>
       </View>
 
       <TouchableOpacity
