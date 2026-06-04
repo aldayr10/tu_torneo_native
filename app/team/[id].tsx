@@ -2,7 +2,10 @@ import {
   View,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
+
+import { router } from 'expo-router';
 
 export default function TournamentDetailsScreen() {
   return (
@@ -15,6 +18,29 @@ export default function TournamentDetailsScreen() {
         paddingBottom: 40,
       }}
     >
+      <TouchableOpacity
+        onPress={() => router.back()}
+        style={{
+          position: 'absolute',
+          top: 60,
+          right: 24,
+          zIndex: 10,
+          backgroundColor: '#1E293B',
+          paddingHorizontal: 16,
+          paddingVertical: 10,
+          borderRadius: 14,
+        }}
+      >
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: '600',
+          }}
+        >
+          ← Volver
+        </Text>
+      </TouchableOpacity>
+
       <View
         style={{
           height: 220,
